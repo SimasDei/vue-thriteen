@@ -7,10 +7,10 @@
     "serve": "nodemon ./server.js --ignore node_modules/ -e js,html,css",
     "lint": "eslint server.js public/script.js"
   },
-  "author": "Anthony Gore <anthony@vuejsdevelopers.com>",
+  "author": "Simas Dei <simas@simas-dei.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vuejsdevelopers/poster-shop"
+    "url": "https://github.com/SimasDei/vue-thirteen"
   },
   "engines": {
     "node": ">=4"
@@ -24,7 +24,9 @@
     "vue": "~2.5.17"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
+    "eslint-plugin-html": "^5.0.5",
     "nodemon": "~1.18.9",
     "reload": "~2.3.1"
   }
