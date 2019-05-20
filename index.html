@@ -44,7 +44,7 @@
 						Loading...
 					</div>
 					<div class="search-results" v-show="products.length" v-else>
-						Found {{ products.length }} results for search term <em>{{ lastSearch }}</em
+						Found {{ results.length }} results for search term <em>{{ lastSearch }}</em
 						>.
 					</div>
 					<div class="product" v-for="(product, index) in products" :key="product.id">
@@ -61,6 +61,11 @@
 							<button class="add-to-cart btn" @click="addToCart(product)">
 								Add to Cart
 							</button>
+						</div>
+					</div>
+					<div id="product-list-bottom">
+						<div v-if="products.length === results.length && results.length > 0">
+							No more items
 						</div>
 					</div>
 				</div>
@@ -97,6 +102,7 @@
 			type="text/javascript"
 			src="node_modules/vue-resource/dist/vue-resource.js"
 		></script>
+		<script type="text/javascript" src="node_modules/scrollmonitor/scrollMonitor.js"></script>
 		<script type="text/javascript" src="public/script.js"></script>
 	</body>
 </html>

@@ -1,3 +1,5 @@
+const LOAD_NUM = 4;
+let watcher;
 new Vue({
 	el: "#app",
 	data: {
@@ -7,10 +9,23 @@ new Vue({
 		search: "",
 		lastSearch: "",
 		loading: false,
+		results: [],
 	},
 	created() {
 		this.search = "dog";
 		this.onSubmit();
+	},
+	beforeUpdate() {
+		if (watcher) {
+			watcher.destroy();
+			wather = null;
+		}
+	},
+	updated() {
+		const sensor = document.querySelector("#product-list-bottom");
+		watcher = scrollMonitor.create(sensor);
+
+		watcher.enterViewport(this.appendResults);
 	},
 	methods: {
 		addToCart: function(product) {
@@ -46,13 +61,21 @@ new Vue({
 		},
 		onSubmit: function() {
 			this.products = [];
+			this.results = [];
 			this.loading = true;
 			const path = `/search?q=${this.search}`;
 			this.$http.get(path).then(res => {
 				this.loading = false;
-				this.products = res.body;
+				this.results = res.body;
 				this.lastSearch = this.search;
+				this.appendResults();
 			});
+		},
+		appendResults() {
+			if (this.products.length < this.results.length) {
+				const toAppend = this.results.slice(this.products.length, LOAD_NUM + this.products.length);
+				this.products = this.products.concat(toAppend);
+			}
 		},
 	},
 	filters: {
