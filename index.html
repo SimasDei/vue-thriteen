@@ -30,13 +30,20 @@
 			</div>
 			<div class="main container">
 				<div class="products">
-					<p>Products go here.</p>
+					<div class="product" v-for="(product, index) in products" :key="index">
+						<div>
+							<h4 class="product-title">
+								{{ product.title }}
+							</h4>
+							<button class="add-to-cart btn" @click="addToCart">
+								Add to Cart
+							</button>
+						</div>
+					</div>
 				</div>
 				<div class="cart">
 					<h2>Shopping Cart</h2>
-					<div>
-						Total: $0.00
-					</div>
+					<div>Total: {{ total }}</div>
 				</div>
 			</div>
 		</div>
