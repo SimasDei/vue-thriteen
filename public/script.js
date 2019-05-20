@@ -2,30 +2,15 @@ new Vue({
 	el: "#app",
 	data: {
 		total: 0,
-		products: [
-			{
-				title: "Product 1",
-				id: "1",
-				price: 9.99,
-			},
-			{
-				title: "Product 2",
-				id: "2",
-				price: 9.99,
-			},
-			{
-				title: "Product 3",
-				id: "3",
-				price: 9.99,
-			},
-			{
-				title: "Product 4",
-				id: "4",
-				price: 9.99,
-			},
-		],
+		products: [],
 		cart: [],
 		search: "",
+		lastSearch: "",
+		loading: false,
+	},
+	created() {
+		this.search = "dog";
+		this.onSubmit();
 	},
 	methods: {
 		addToCart: function(product) {
@@ -60,9 +45,13 @@ new Vue({
 			this.total -= item.price;
 		},
 		onSubmit: function() {
+			this.products = [];
+			this.loading = true;
 			const path = `/search?q=${this.search}`;
 			this.$http.get(path).then(res => {
-				console.log(res);
+				this.loading = false;
+				this.products = res.body;
+				this.lastSearch = this.search;
 			});
 		},
 	},
