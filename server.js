@@ -26,7 +26,7 @@ app.get("/search", function(req, res) {
 				id: file.id,
 				title: file.title,
 				thumb: "/public/images/".concat(file.thumb),
-				price: file.price
+				price: file.price,
 			});
 		}
 		return acc;
@@ -42,6 +42,6 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 var port = process.env.PORT || 3000;
-server.listen(port, function () {
+server.listen(port, function() {
 	console.log("Listening on port ".concat(port));
 });

@@ -26,6 +26,15 @@
 						<img src="public/logo.png" />
 						<h1>Vue.js Poster Shop</h1>
 					</div>
+					<form @submit.prevent="onSubmit" class="search-bar">
+						<input
+							v-model="search"
+							type="text"
+							placeholder="Search for Posters"
+							required
+						/>
+						<input class="btn" type="submit" value="Search" />
+					</form>
 				</div>
 			</div>
 			<div class="main container">
@@ -68,6 +77,10 @@
 		<!-- Scripts -->
 		<script src="/reload/reload.js"></script>
 		<script type="text/javascript" src="node_modules/vue/dist/vue.js"></script>
+		<script
+			type="text/javascript"
+			src="node_modules/vue-resource/dist/vue-resource.js"
+		></script>
 		<script type="text/javascript" src="public/script.js"></script>
 	</body>
 </html>

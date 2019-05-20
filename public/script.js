@@ -25,6 +25,7 @@ new Vue({
 			},
 		],
 		cart: [],
+		search: "",
 	},
 	methods: {
 		addToCart: function(product) {
@@ -57,6 +58,12 @@ new Vue({
 			}
 			item.quantity--;
 			this.total -= item.price;
+		},
+		onSubmit: function() {
+			const path = `/search?q=${this.search}`;
+			this.$http.get(path).then(res => {
+				console.log(res);
+			});
 		},
 	},
 	filters: {
